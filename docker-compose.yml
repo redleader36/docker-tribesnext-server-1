@@ -10,7 +10,7 @@ services:
       # TODO
       T2_SERVERNAME: "T2DockerTest"
 
-      ports:
+    ports:
       - target: 28000
         published: 28000
         protocol: udp
