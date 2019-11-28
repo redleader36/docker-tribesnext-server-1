@@ -31,7 +31,7 @@ function check_requirements {
 function get_files {
     if [ ! -f "$TMPBASE/$1" ]
     then
-      /usr/bin/wget --no-check-certificate -q "$2/$1" -O "$TMPBASE/$1"
+      /usr/bin/wget --no-check-certificate "$2/$1" -O "$TMPBASE/$1"
     fi
 }
 
@@ -50,9 +50,11 @@ fi
 
 
 # -- download files
-get_files tribes2gsi.exe                        "https://www.the-construct.net/downloads/tribes2/"   "$TMPBASE"
-get_files TribesNext_rc2a.exe                   "https://www.tribesnext.com/files/"                  "$TMPBASE"
-get_files TribesNext_RC2_LinuxVersion.zip       "https://lutris.net/files/games/tribes-2/"           "$TMPBASE"
+get_files tribes2gsi.exe                      "https://www.the-construct.net/downloads/tribes2/"                "$TMPBASE"
+get_files TribesNext_rc2a.exe                 "https://www.tribesnext.com/files/"                               "$TMPBASE"
+get_files TribesNext_RC2_LinuxVersion.zip     "https://lutris.net/files/games/tribes-2/"                        "$TMPBASE"
+get_files ruby-1.9.0-2-i386-mswin32.zip       "https://ftp.ruby-lang.org/pub/ruby/binaries/mswin32/unstable/"   "$TMPBASE"
+get_files classic_v152.zip                    "https://tribes2stats.com/files/mods/"                            "$TMPBASE"
 
 # -- some items require an headerless
 export DISPLAY=:99
@@ -251,5 +253,26 @@ fi
 
 # -- extract updated linux version and replace the existing installation
 [ -f $TMPBASE/TribesNext_RC2_LinuxVersion.zip ] && /usr/bin/unzip -o $TMPBASE/TribesNext_RC2_LinuxVersion.zip -d $INSBASE/Tribes2/GameData 2>&1 > /dev/null
+
+
+# -- update Ruby v1.9.0-2
+[ -f $TMPBASE/ruby-1.9.0-2-i386-mswin32.zip ] && /usr/bin/unzip -o $TMPBASE/ruby-1.9.0-2-i386-mswin32.zip -d $TMPBASE/ruby 2>&1 > /dev/null
+if [ -f $TMPBASE/ruby-1.9.0-2-i386-mswin32.zip ]
+then
+    mv -f $TMPBASE/ruby/bin/msvcrt-ruby190.dll $INSBASE/Tribes2/GameData/msvcrt-ruby190.dll
+fi
+
+
+# -- update Classic mod to v1.5.2
+[ -f $TMPBASE/classic_v152.zip ] && /usr/bin/unzip -o $TMPBASE/classic_v152.zip -d $TMPBASE/classic 2>&1 > /dev/null
+[ -f $TMPBASE/classic/classic_files_v152.zip ] && /usr/bin/unzip -o $TMPBASE/classic/classic_files_v152.zip -d $TMPBASE/classic 2>&1 > /dev/null
+# -- move all extract files into place
+if [ -f $TMPBASE/classic/classic_files_v152.zip ]
+then
+#   /home/gameserv/.wine/drive_c/Dynamix/Tribes2/GameData/Classic
+    mv -f $TMPBASE/classic/base/zz_classic_client_v1.vl2 $INSBASE/Tribes2/GameData/base/zz_Classic_client_v1.vl2
+    cp -r $TMPBASE/classic/classic/. $INSBASE/Tribes2/GameData/Classic/.
+fi
+
 
 exit 0
