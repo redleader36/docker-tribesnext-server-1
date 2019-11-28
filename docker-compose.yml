@@ -1,0 +1,40 @@
+version: "3.7"
+
+services:
+
+  t2:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      # TODO
+      T2_SERVERNAME: "T2DockerTest"
+
+      ports:
+      - target: 28000
+        published: 28000
+        protocol: udp
+        mode: host
+      - target: 666
+        protocol: tcp
+        published: 27999
+        mode: host
+                   
+    networks:
+      - t2-net
+
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 1
+        delay: 5s
+      restart_policy:
+        condition: on-failure
+
+    logging:
+      options:
+        max-size: "10m"
+
+networks:
+  t2-net:
+    driver: overlay
