@@ -1,5 +1,14 @@
 # Docker TribesNext
 
+
+## Fork Updates
+
+- [Classic v1.5.2](http://tribes2stats.com/files/mods/classic_v152.zip)
+- [Ruby 1.9](https://ftp.ruby-lang.org/pub/ruby/binaries/mswin32/unstable/ruby-1.9.0-2-i386-mswin32.zip)
+
+
+---
+
 ## Information
 TribesNext dedicated server patched and running within Docker under wine.
 
