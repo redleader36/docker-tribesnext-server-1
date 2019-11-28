@@ -18,7 +18,7 @@ sudo unzip \
 # -- logging
 rsyslog \
 # -- utilities
-sed less vim file \
+sed less nano vim file \
 # --- wine
 wine \
 # -- display
