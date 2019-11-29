@@ -2,4 +2,5 @@ build_image
 run_container
 *.cs
 *.dso
+notes.md
 _custom/start-server.sh
