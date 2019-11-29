@@ -10,6 +10,20 @@ services:
       # TODO
       T2_SERVERNAME: "T2DockerTest"
 
+    secrets:
+      - source: t2.superadmin.list.v1
+        target: t2.superadmin.list
+      - source: t2.admin.list.v1
+        target: t2.admin.list
+      - source: t2.admin.password.v1
+        target: t2.admin.password
+      - source: t2.classic.superadmin.password.v1
+        target: t2.classic.superadmin.password
+      - source: t2.classic.telnet.password.v1
+        target: t2.classic.telnet.password
+      - source: t2.classic.telnet.listen.password.v1
+        target: t2.classic.telnet.listen.password
+
     ports:
       - target: 28000
         published: 28000
@@ -38,3 +52,20 @@ services:
 networks:
   t2-net:
     driver: overlay
+
+secrets:
+  t2.superadmin.list:
+    external: true
+    name: t2.superadmin.list.v1
+  t2.admin.list:
+    external: true
+    name: t2.admin.list.v1
+  t2.classic.superadmin.password:
+    external: true
+    name: t2.classic.superadmin.password.v1
+  t2.classic.telnet.password:
+    external: true
+    name: t2.classic.telnet.password.v1
+  t2.classic.telnet.listen.password:
+    external: true
+    name: t2.classic.telnet.listen.password.v1    
