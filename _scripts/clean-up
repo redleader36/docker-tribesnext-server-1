@@ -1,0 +1,11 @@
+#!/bin/bash
+
+echo "Removing old installers"
+
+[ -f TribesNext_RC2_LinuxVersion.zip ] && rm TribesNext_RC2_LinuxVersion.zip
+[ -f TribesNext_rc2a.exe ] && rm TribesNext_rc2a.exe
+[ -f classic_v152.zip ] && rm classic_v152.zip
+[ -f ruby-1.9.0-2-i386-mswin32.zip ] && rm ruby-1.9.0-2-i386-mswin32.zip
+[ -f tribes2gsi.exe ] && rm tribes2gsi.exe
+
+echo "Done!"
