@@ -53,7 +53,7 @@ fi
 get_files tribes2gsi.exe                      "https://www.the-construct.net/downloads/tribes2/"                "$TMPBASE"
 get_files TribesNext_rc2a.exe                 "https://www.tribesnext.com/files/"                               "$TMPBASE"
 get_files TribesNext_RC2_LinuxVersion.zip     "https://lutris.net/files/games/tribes-2/"                        "$TMPBASE"
-get_files ruby-1.9.0-2-i386-mswin32.zip       "https://ftp.ruby-lang.org/pub/ruby/binaries/mswin32/unstable/"   "$TMPBASE"
+get_files ruby-1.9.0-2-i386-mswin32.zip       "https://ftp.ruby-lang.org/pub/ruby/binaries/mswin32/unstable"    "$TMPBASE"
 get_files classic_v152.zip                    "https://tribes2stats.com/files/mods/"                            "$TMPBASE"
 
 # -- some items require an headerless
@@ -65,7 +65,8 @@ export DISPLAY=:99
 sleep 1
 
 
-# -- extract the main installer, the silent installer is a lie! 
+# -- extract the main installer, the silent installer is a lie!
+echo "Installing T2..."
 /usr/bin/wine $TMPBASE/tribes2gsi.exe /x Z:\\tmp\\tribes2\\game
 
 
@@ -245,8 +246,11 @@ then
     mv $TMPBASE/game/weapTurretCode.cs $INSBASE/Tribes2/GameData/Classic/scripts/weapTurretCode.cs
     mv $TMPBASE/game/zz_Classic_client_v1.vl2 $INSBASE/Tribes2/GameData/base/zz_Classic_client_v1.vl2
     mv $TMPBASE/game/zz.ini $INSBASE/Tribes2/GameData/zz.ini
+
+    echo "T2 installed!"
 fi
 
+echo "Running Patches and Updates..."
 # -- install tribesnext silently
 [ -f $TMPBASE/TribesNext_rc2a.exe ] && /usr/bin/wine $TMPBASE/TribesNext_rc2a.exe /S
 
@@ -274,5 +278,6 @@ then
     cp -r $TMPBASE/classic/classic/. $INSBASE/Tribes2/GameData/Classic/.
 fi
 
+echo "Finished setting up T2!"
 
 exit 0
