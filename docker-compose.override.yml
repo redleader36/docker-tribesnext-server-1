@@ -11,6 +11,9 @@ secrets:
   t2.admin.list:
     external: false
     file: ./_dev-secrets/t2.admin.list.dev
+  t2.admin.password:
+    external: false
+    file: ./_dev-secrets/t2.admin.password.dev
   t2.classic.superadmin.password:
     external: false
     file: ./_dev-secrets/t2.classic.superadmin.password.dev

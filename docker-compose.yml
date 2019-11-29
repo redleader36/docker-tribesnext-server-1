@@ -7,22 +7,15 @@ services:
       context: .
       dockerfile: ./Dockerfile
     environment:
-      # TODO
       T2_SERVERNAME: "T2DockerTest"
 
     secrets:
-      - source: t2.superadmin.list.v1
-        target: t2.superadmin.list
-      - source: t2.admin.list.v1
-        target: t2.admin.list
-      - source: t2.admin.password.v1
-        target: t2.admin.password
-      - source: t2.classic.superadmin.password.v1
-        target: t2.classic.superadmin.password
-      - source: t2.classic.telnet.password.v1
-        target: t2.classic.telnet.password
-      - source: t2.classic.telnet.listen.password.v1
-        target: t2.classic.telnet.listen.password
+      - t2.superadmin.list
+      - t2.admin.list
+      - t2.admin.password
+      - t2.classic.superadmin.password
+      - t2.classic.telnet.password
+      - t2.classic.telnet.listen.password
 
     ports:
       - target: 28000
@@ -60,6 +53,9 @@ secrets:
   t2.admin.list:
     external: true
     name: t2.admin.list.v1
+  t2.admin.password:
+    external: true
+    name: t2.admin.password.v1    
   t2.classic.superadmin.password:
     external: true
     name: t2.classic.superadmin.password.v1
