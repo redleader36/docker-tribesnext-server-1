@@ -1,5 +1,5 @@
 FROM multiarch/debian-debootstrap:i386-jessie
-MAINTAINER sairuk
+LABEL maintainer="sairuk, amineo, chocotaco"
 
 # ENVIRONMENT
 ARG SRVUSER=gameserv
