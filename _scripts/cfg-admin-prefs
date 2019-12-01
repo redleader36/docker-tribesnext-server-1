@@ -4,18 +4,8 @@ SRVUSER=gameserv
 ADMINPREFS_FILE=/home/$SRVUSER/.wine32/drive_c/Dynamix/Tribes2/GameData/Classic/scripts/autoexec/AdminPrefs.cs
 SECRETS=/run/secrets
 
-
-
-# -- set Admin List
-cat ${SECRETS}/t2.admin.list >> $ADMINPREFS_FILE
-printf "\n" >> $ADMINPREFS_FILE
-
 # -- set Admin Password
 cat ${SECRETS}/t2.admin.password >> $ADMINPREFS_FILE
-printf "\n" >> $ADMINPREFS_FILE
-
-# -- set SuperAdmin List
-cat ${SECRETS}/t2.superadmin.list >> $ADMINPREFS_FILE
 printf "\n" >> $ADMINPREFS_FILE
 
 # -- set classic SA PW
@@ -30,6 +20,50 @@ printf "\n" >> $ADMINPREFS_FILE
 cat ${SECRETS}/t2.classic.telnet.password >> $ADMINPREFS_FILE
 printf "\n" >> $ADMINPREFS_FILE
 
+
+# -- set sa/admin lists
+echo "\$Host::AdminList = \"${T2_ADMIN_LIST}\";" >> $ADMINPREFS_FILE
+printf "\n" >> $ADMINPREFS_FILE
+echo "\$Host::SuperAdminList = \"${T2_SA_LIST}\";" >> $ADMINPREFS_FILE
+printf "\n" >> $ADMINPREFS_FILE
+
 # -- set server name
 echo "\$Host::GameName = \"${T2_SERVERNAME}\";" >> $ADMINPREFS_FILE
+printf "\n" >> $ADMINPREFS_FILE
+
+# -- set mission type
+echo "\$Host::MissionType = \"${T2_DEFAULT_MISSIONTYPE}\";" >> $ADMINPREFS_FILE
+printf "\n" >> $ADMINPREFS_FILE
+
+# -- set map
+echo "\$Host::Map = \"${T2_DEFAULT_MAP}\";" >> $ADMINPREFS_FILE
+printf "\n" >> $ADMINPREFS_FILE
+
+# -- set max players
+echo "\$Host::MaxPlayers = \"${T2_MAX_PLAYERS}\";" >> $ADMINPREFS_FILE
+printf "\n" >> $ADMINPREFS_FILE
+
+
+# -- set auto pw
+echo "\$Host::ClassicAutoPWEnabled = ${T2_AUTOPW_ENABLED};" >> $ADMINPREFS_FILE
+printf "\n" >> $ADMINPREFS_FILE
+echo "\$Host::PUGautoPassword = ${T2_PUGAUTOPW_ENABLED};" >> $ADMINPREFS_FILE
+printf "\n" >> $ADMINPREFS_FILE
+
+# -- set server/pug pw
+echo "\$Host::Password = ${T2_SERVER_PASS};" >> $ADMINPREFS_FILE
+printf "\n" >> $ADMINPREFS_FILE
+echo "\$Host::PUGPassword = ${T2_SERVER_PASS};" >> $ADMINPREFS_FILE
+printf "\n" >> $ADMINPREFS_FILE
+
+# -- set MOTD
+echo "\$Host::EvoMOTD = \"${T2_MOTD}\";" >> $ADMINPREFS_FILE
+printf "\n" >> $ADMINPREFS_FILE
+
+# -- set Loading screen MOTD
+echo "\$Host::LoadScreenMOTD1 = \"${T2_LoadScreenMOTD1}\";" >> $ADMINPREFS_FILE
+printf "\n" >> $ADMINPREFS_FILE
+echo "\$Host::LoadScreenMOTD2 = \"${T2_LoadScreenMOTD2}\";" >> $ADMINPREFS_FILE
+printf "\n" >> $ADMINPREFS_FILE
+echo "\$Host::LoadScreenMOTD3 = \"${T2_LoadScreenMOTD3}\";" >> $ADMINPREFS_FILE
 printf "\n" >> $ADMINPREFS_FILE
