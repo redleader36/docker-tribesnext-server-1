@@ -11,7 +11,7 @@ services:
       T2_MAX_PLAYERS: 64
       T2_DEFAULT_MISSIONTYPE: "LakRabbit"
       T2_DEFAULT_MAP: "VaubanLak"
-      T2_AUTOPW_ENABLED: 0
+      T2_AUTOPW_ENABLED: 1
       T2_PUGAUTOPW_ENABLED: 1
       T2_SERVER_PASS: "pickup"
       T2_MOTD: "<color:3cb4b4><font:Sui Generis:22>Welcome\\n<color:3cb4b4><font:Univers:16>Get Mappacks at https://playt2.tk"
@@ -19,7 +19,7 @@ services:
       T2_LoadScreenMOTD2: " "
       T2_LoadScreenMOTD3: " "
       T2_ADMIN_LIST: ""
-      T2_SA_LIST: "4230323\t4095669"
+      T2_SA_LIST: "4230323\\t4095669"
     secrets:
       - t2.superadmin.list
       - t2.admin.list
