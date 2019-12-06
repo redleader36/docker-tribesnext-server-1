@@ -9,14 +9,16 @@ RUN apk --update add git sed less wget nano openssh && \
 WORKDIR /tmp
 
 RUN git clone --depth 1 "https://github.com/ChocoTaco1/TacoServer/" && cd ./TacoServer \
-    && git checkout "a03ff8f66ef7b3e12b3a8514aed8eecf76a50c6c"
+    && git checkout "cf5440b41c2954f3f65bc43f5ccab181ddef73ac"
 WORKDIR /tmp
 
 RUN git clone --depth 1 "https://github.com/ChocoTaco1/TacoMaps/"  && cd ./TacoMaps \ 
-    && git checkout "908d952c04caf01091af70c3791b4606bc94395a"
+    && git checkout "9fca3e1ef19db7e64448ab03c0f74abde6fc110e"
 WORKDIR /tmp
 
 
+RUN git clone --depth 1 "https://github.com/ChocoTaco1/NoTNscripts/"  && cd ./NoTNscripts \ 
+    && git checkout "61538c12fe18db331da588ad964e80209209b182"
 
 
 
@@ -87,16 +89,16 @@ RUN ${SRVDIR}/tribesnext-server-installer
 COPY _scripts/start-server ${INSTDIR}/start-server
 RUN chmod +x ${INSTDIR}/start-server
 
-
-# CLEAN UP TMP
-COPY _scripts/clean-up ${SRVDIR}
-RUN chmod +x ${SRVDIR}/clean-up
-RUN ${SRVDIR}/clean-up
-
-
 # TacoServer - Pull in resources from builder
 COPY --from=tacobuilder /tmp/TacoServer/Classic/. ${INSTDIR}GameData/Classic/.
 COPY --from=tacobuilder /tmp/TacoMaps/. ${INSTDIR}GameData/Classic/Maps/
+COPY --from=tacobuilder /tmp/NoTNscripts/. ${INSTDIR}GameData/Classic/scripts/autoexec/.
+
+
+# CLEAN UP
+COPY _scripts/clean-up ${SRVDIR}
+RUN chmod +x ${SRVDIR}/clean-up
+RUN ${SRVDIR}/clean-up ${INSTDIR}
 
 
 # SCRIPT - custom (custom content / overrides)

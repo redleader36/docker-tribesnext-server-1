@@ -9,3 +9,12 @@ echo "Removing old installers"
 [ -f tribes2gsi.exe ] && rm tribes2gsi.exe
 
 echo "Done!"
+
+echo "Removing TacoServer TribesNext Incompatibilities"
+
+# Remove zAdvancedStatsLogless.vl2: causes issues connecting without TN
+rm $1/GameData/Classic/zAdvancedStatsLogless.vl2
+# Remove checkVer: Wont work anyway without TN
+rm $1/GameData/Classic/scripts/autoexec/zCheckVer.cs
+
+echo "Done!"

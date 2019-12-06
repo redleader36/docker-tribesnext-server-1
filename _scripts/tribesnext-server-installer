@@ -52,9 +52,7 @@ fi
 
 # -- download files
 get_files tribes2gsi.exe                      "https://www.the-construct.net/downloads/tribes2/"                "$TMPBASE"
-get_files TribesNext_rc2a.exe                 "https://www.tribesnext.com/files/"                               "$TMPBASE"
-get_files TribesNext_RC2_LinuxVersion.zip     "https://lutris.net/files/games/tribes-2/"                        "$TMPBASE"
-get_files ruby-1.9.0-2-i386-mswin32.zip       "https://ftp.ruby-lang.org/pub/ruby/binaries/mswin32/unstable/"    "$TMPBASE"
+get_files tribes2-lan-fix-win32.zip           "http://t2.plugh.us/"						        				"$TMPBASE"
 get_files classic_v152.zip                    "https://tribes2stats.com/files/mods/"                            "$TMPBASE"
 
 # -- some items require an headerless
@@ -251,23 +249,7 @@ then
     echo "T2 installed!"
 fi
 
-echo "Running Patches and Updates..."
-# -- install tribesnext silently
-[ -f $TMPBASE/TribesNext_rc2a.exe ] && /usr/bin/wine $TMPBASE/TribesNext_rc2a.exe /S
-
-
-# -- extract updated linux version and replace the existing installation
-[ -f $TMPBASE/TribesNext_RC2_LinuxVersion.zip ] && /usr/bin/unzip -o $TMPBASE/TribesNext_RC2_LinuxVersion.zip -d $INSBASE/Tribes2/GameData 2>&1 > /dev/null
-
-
-# -- update Ruby v1.9.0-2
-[ -f $TMPBASE/ruby-1.9.0-2-i386-mswin32.zip ] && /usr/bin/unzip -o $TMPBASE/ruby-1.9.0-2-i386-mswin32.zip -d $TMPBASE/ruby 2>&1 > /dev/null
-if [ -f $TMPBASE/ruby-1.9.0-2-i386-mswin32.zip ]
-then
-    mv -f $TMPBASE/ruby/bin/msvcrt-ruby190.dll $INSBASE/Tribes2/GameData/msvcrt-ruby190.dll
-fi
-
-
+echo "Installing Classic Mod v1.5.2"
 # -- update Classic mod to v1.5.2
 [ -f $TMPBASE/classic_v152.zip ] && /usr/bin/unzip -o $TMPBASE/classic_v152.zip -d $TMPBASE/classic 2>&1 > /dev/null
 [ -f $TMPBASE/classic/classic_files_v152.zip ] && /usr/bin/unzip -o $TMPBASE/classic/classic_files_v152.zip -d $TMPBASE/classic 2>&1 > /dev/null
@@ -278,6 +260,14 @@ then
     mv -f $TMPBASE/classic/base/zz_classic_client_v1.vl2 $INSBASE/Tribes2/GameData/base/zz_Classic_client_v1.vl2
     cp -r $TMPBASE/classic/classic/. $INSBASE/Tribes2/GameData/Classic/.
 fi
+
+
+# -- install LAN fix
+echo "Installing Tribes2 Lan Fix (Win32)..."
+# -- run the bat and output the patched file (Tribes2d.exe)
+[ -f $TMPBASE/tribes2-lan-fix-win32.zip ] && /usr/bin/unzip -o $TMPBASE/tribes2-lan-fix-win32.zip -d $INSBASE/Tribes2/GameData 2>&1 > /dev/null
+cd $INSBASE/Tribes2/GameData/ && wineconsole xdelta3 decode -s Tribes2.exe tribes2-lan-fix-win32.xdelta Tribes2d.exe
+
 
 echo "Finished setting up T2!"
 
