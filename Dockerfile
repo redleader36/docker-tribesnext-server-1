@@ -8,18 +8,14 @@ RUN apk --update add git sed less wget nano openssh && \
 
 WORKDIR /tmp
 
-RUN git clone --depth 1 "https://github.com/ChocoTaco1/TacoServer/" && cd ./TacoServer \
-    && git checkout "cf5440b41c2954f3f65bc43f5ccab181ddef73ac"
+RUN git clone --depth 1 "https://github.com/ChocoTaco1/TacoServer/" && cd ./TacoServer 
 WORKDIR /tmp
 
-RUN git clone --depth 1 "https://github.com/ChocoTaco1/TacoMaps/"  && cd ./TacoMaps \ 
-    && git checkout "9fca3e1ef19db7e64448ab03c0f74abde6fc110e"
+RUN git clone --depth 1 "https://github.com/ChocoTaco1/TacoMaps/"  && cd ./TacoMaps
 WORKDIR /tmp
 
 
-RUN git clone --depth 1 "https://github.com/ChocoTaco1/NoTNscripts/"  && cd ./NoTNscripts \ 
-    && git checkout "61538c12fe18db331da588ad964e80209209b182"
-
+RUN git clone --depth 1 "https://github.com/ChocoTaco1/NoTNscripts/"  && cd ./NoTNscripts
 
 
 # Main Game Server Image
