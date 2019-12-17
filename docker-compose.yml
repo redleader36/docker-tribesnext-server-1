@@ -7,12 +7,13 @@ services:
       context: .
       dockerfile: ./Dockerfile
     environment:
-      T2_SERVERNAME: "T2DockerTest"
+      T2_SERVERNAME: "Testing Grounds"
       T2_MAX_PLAYERS: 64
-      T2_DEFAULT_MISSIONTYPE: "LakRabbit"
-      T2_DEFAULT_MAP: "VaubanLak"
+      T2_DEFAULT_MISSIONTYPE: "CTF"
+      T2_DEFAULT_MAP: "HighOctane"
       T2_AUTOPW_ENABLED: 1
       T2_PUGAUTOPW_ENABLED: 1
+      T2_PUGPW_ALWAYSON: 1
       T2_SERVER_PASS: "pickup"
       T2_MOTD: "<color:3cb4b4><font:Sui Generis:22>Welcome\\n<color:3cb4b4><font:Univers:16>Get Mappacks at https://playt2.tk"
       T2_LoadScreenMOTD1: "Have fun!"
@@ -21,8 +22,6 @@ services:
       T2_ADMIN_LIST: ""
       T2_SA_LIST: "4230323\\t4095669"
     secrets:
-      - t2.superadmin.list
-      - t2.admin.list
       - t2.admin.password
       - t2.classic.superadmin.password
       - t2.classic.telnet.password
@@ -41,6 +40,12 @@ services:
     networks:
       - t2-net
 
+    healthcheck:
+      test: ["CMD-SHELL", "nc -z -u 127.0.0.1 28000 || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
     deploy:
       replicas: 1
       update_config:
@@ -58,12 +63,6 @@ networks:
     driver: overlay
 
 secrets:
-  t2.superadmin.list:
-    external: true
-    name: t2.superadmin.list.v1
-  t2.admin.list:
-    external: true
-    name: t2.admin.list.v1
   t2.admin.password:
     external: true
     name: t2.admin.password.v1    
