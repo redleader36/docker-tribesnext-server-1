@@ -37,7 +37,7 @@ ENV WINEPREFIX=/home/${SRVUSER}/.wine32/
 
 # UPDATE IMAGE
 RUN dpkg --add-architecture i386
-RUN apt-get -y update && apt-get -y upgrade
+RUN apt-get -y update --fix-missing && apt-get -y upgrade
 
 # DEPENDENCIES
 RUN apt-get -y install \
@@ -46,7 +46,7 @@ sudo unzip \
 # -- logging
 rsyslog \
 # -- utilities
-sed less nano vim file wget gnupg2 software-properties-common \
+sed less nano vim file wget gnupg2 software-properties-common netcat \
 # --- wine
 #${WINEVER} \
 # -- display
