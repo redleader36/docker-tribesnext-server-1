@@ -50,10 +50,18 @@ printf "\n" >> $ADMINPREFS_FILE
 echo "\$Host::PUGautoPassword = ${T2_PUGAUTOPW_ENABLED};" >> $ADMINPREFS_FILE
 printf "\n" >> $ADMINPREFS_FILE
 
+if [ "$T2_PUGPW_ALWAYSON" = 1 ]
+then
+    echo "\$Host::PUGpasswordAlwaysOn = ${T2_PUGPW_ALWAYSON};" >> $ADMINPREFS_FILE
+    printf "\n" >> $ADMINPREFS_FILE
+fi
+
+
+
 # -- set server/pug pw
-echo "\$Host::Password = ${T2_SERVER_PASS};" >> $ADMINPREFS_FILE
+echo "\$Host::Password =  \"${T2_SERVER_PASS}\";" >> $ADMINPREFS_FILE
 printf "\n" >> $ADMINPREFS_FILE
-echo "\$Host::PUGPassword = ${T2_SERVER_PASS};" >> $ADMINPREFS_FILE
+echo "\$Host::PUGPassword =  \"${T2_SERVER_PASS}\";" >> $ADMINPREFS_FILE
 printf "\n" >> $ADMINPREFS_FILE
 
 # -- set MOTD
