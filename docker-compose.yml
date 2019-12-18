@@ -11,16 +11,45 @@ services:
       T2_MAX_PLAYERS: 64
       T2_DEFAULT_MISSIONTYPE: "CTF"
       T2_DEFAULT_MAP: "HighOctane"
-      T2_AUTOPW_ENABLED: 1
-      T2_PUGAUTOPW_ENABLED: 1
       T2_PUGPW_ALWAYSON: 1
-      T2_SERVER_PASS: "pickup"
-      T2_MOTD: "<color:3cb4b4><font:Sui Generis:22>Welcome\\n<color:3cb4b4><font:Univers:16>Get Mappacks at https://playt2.tk"
+      T2_PUG_PASSWORD: "pickup"
+      T2_PUGAUTOPW_TOURNY: 1
+      T2_TimeLimit: 45
+      T2_Telnet: 1
+      T2_BaseRapeMin: 14
+      T2_TurretMin: 10
+      T2_CloakMin: 6
+      T2_ObserverTimeout: 1200
+      T2_BanTime: 1800
+      T2_EmptyServerReset: 1
+      T2_EmptyServerResetTime: 120
+      T2_PacketRate: 32
+      T2_PacketSize: 450
+      T2_NoSmurfs: 0
+      T2_ADMIN_LIST: ""
+      T2_SA_LIST: ""
+      T2_JoinBanner: "<color:3cb4b4><font:Sui Generis:22>Welcome\\n<color:3cb4b4><font:Univers:16>Get Mappacks at https://playt2.tk"
+      T2_JoinBannerLines: 3
+      T2_JoinBannerTime: 6
+      T2_LoadScreenColor1: "05edad"
+      T2_LoadScreenColor2: "29DEE7"
+      T2_LoadScreenColor3: "33CCCC"
+      T2_LoadScreenLine1: "Join Discord:"
+      T2_LoadScreenLine1_Msg: "https://discord.me/tribes2"
+      T2_LoadScreenLine2: "Game Modes:"
+      T2_LoadScreenLine2_Msg: "LakRabbit, Capture the Flag, DeathMatch, (Light Only) Capture the Flag"
+      T2_LoadScreenLine3: "Required Mappacks:"
+      T2_LoadScreenLine3_Msg: "S5, S8, TWL, TWL2 - Get them at http://playt2.tk"
+      T2_LoadScreenLine4: "Server Location:"
+      T2_LoadScreenLine4_Msg: "Chicago"
+      T2_LoadScreenLine5: "Server Infrastructure GitHub:"
+      T2_LoadScreenLine5_Msg: "https://github.com/amineo/docker-tribesnext-server"
+      T2_LoadScreenLine6: "TacoServer GitHub:"
+      T2_LoadScreenLine6_Msg: "https://github.com/ChocoTaco1/TacoServer"
       T2_LoadScreenMOTD1: "Have fun!"
       T2_LoadScreenMOTD2: " "
       T2_LoadScreenMOTD3: " "
-      T2_ADMIN_LIST: ""
-      T2_SA_LIST: "4230323\\t4095669"
+      T2_LoadScreenMOTD4: " "
     secrets:
       - t2.admin.password
       - t2.classic.superadmin.password

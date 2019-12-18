@@ -35,6 +35,10 @@ printf "\n" >> $ADMINPREFS_FILE
 echo "\$Host::MissionType = \"${T2_DEFAULT_MISSIONTYPE}\";" >> $ADMINPREFS_FILE
 printf "\n" >> $ADMINPREFS_FILE
 
+# -- time limit
+echo "\$Host::TimeLimit = \"${T2_TimeLimit}\";" >> $ADMINPREFS_FILE
+printf "\n" >> $ADMINPREFS_FILE
+
 # -- set map
 echo "\$Host::Map = \"${T2_DEFAULT_MAP}\";" >> $ADMINPREFS_FILE
 printf "\n" >> $ADMINPREFS_FILE
@@ -43,35 +47,114 @@ printf "\n" >> $ADMINPREFS_FILE
 echo "\$Host::MaxPlayers = \"${T2_MAX_PLAYERS}\";" >> $ADMINPREFS_FILE
 printf "\n" >> $ADMINPREFS_FILE
 
-
 # -- set auto pw
-echo "\$Host::ClassicAutoPWEnabled = ${T2_AUTOPW_ENABLED};" >> $ADMINPREFS_FILE
-printf "\n" >> $ADMINPREFS_FILE
 echo "\$Host::PUGautoPassword = ${T2_PUGAUTOPW_ENABLED};" >> $ADMINPREFS_FILE
 printf "\n" >> $ADMINPREFS_FILE
 
+# -- set telnet on/off
+echo "\$Host::ClassicTelnet = ${T2_Telnet};" >> $ADMINPREFS_FILE
+printf "\n" >> $ADMINPREFS_FILE
+
+# -- set baserape
+echo "\$Host::EvoNoBaseRapeClassicPlayerCount = ${T2_BaseRapeMin};" >> $ADMINPREFS_FILE
+printf "\n" >> $ADMINPREFS_FILE
+echo "\$Host::EvoNoBaseRapePlayerCount = ${T2_BaseRapeMin};" >> $ADMINPREFS_FILE
+printf "\n" >> $ADMINPREFS_FILE
+
+# -- set turret min
+echo "\$Host::EnableTurretPlayerCount = ${T2_TurretMin};" >> $ADMINPREFS_FILE
+printf "\n" >> $ADMINPREFS_FILE
+
+# -- set cloak pack min
+echo "\$Host::AntiCloakPlayerCount = ${T2_CloakMin};" >> $ADMINPREFS_FILE
+printf "\n" >> $ADMINPREFS_FILE
+
+# -- set packet settings
+echo "\$Host::ClassicPacketRateToClient = ${T2_PacketRate};" >> $ADMINPREFS_FILE
+printf "\n" >> $ADMINPREFS_FILE
+echo "\$Host::ClassicPacketSize = ${T2_PacketSize};" >> $ADMINPREFS_FILE
+printf "\n" >> $ADMINPREFS_FILE
+
+# -- set observer timeout
+echo "\$Host::EvoKickObservers = ${T2_ObserverTimeout};" >> $ADMINPREFS_FILE
+printf "\n" >> $ADMINPREFS_FILE
+
+# -- set ban time
+echo "\$Host::BanTime = ${T2_BanTime};" >> $ADMINPREFS_FILE
+printf "\n" >> $ADMINPREFS_FILE
+
+# -- set empty server reset
+if [ "T2_EmptyServerReset" = 1 ]
+then
+	echo "\$Host::EmptyServerReset = ${T2_EmptyServerReset};" >> $ADMINPREFS_FILE
+    printf "\n" >> $ADMINPREFS_FILE
+    echo "\$Host::EmptyServerResetTime = ${T2_EmptyServerResetTime};" >> $ADMINPREFS_FILE
+    printf "\n" >> $ADMINPREFS_FILE
+fi
+
+# -- set PUG always on
 if [ "$T2_PUGPW_ALWAYSON" = 1 ]
 then
     echo "\$Host::PUGpasswordAlwaysOn = ${T2_PUGPW_ALWAYSON};" >> $ADMINPREFS_FILE
     printf "\n" >> $ADMINPREFS_FILE
 fi
 
-
-
 # -- set server/pug pw
-echo "\$Host::Password =  \"${T2_SERVER_PASS}\";" >> $ADMINPREFS_FILE
+echo "\$Host::PUGPassword =  \"${T2_PUG_PASSWORD}\";" >> $ADMINPREFS_FILE
 printf "\n" >> $ADMINPREFS_FILE
-echo "\$Host::PUGPassword =  \"${T2_SERVER_PASS}\";" >> $ADMINPREFS_FILE
-printf "\n" >> $ADMINPREFS_FILE
-
-# -- set MOTD
-echo "\$Host::EvoMOTD = \"${T2_MOTD}\";" >> $ADMINPREFS_FILE
+echo "\$Host::PUGautoPassword =  \"${T2_PUGAUTOPW_TOURNY}\";" >> $ADMINPREFS_FILE
 printf "\n" >> $ADMINPREFS_FILE
 
-# -- set Loading screen MOTD
+# -- set smurfs
+echo "\$Host::NoSmurfs =  \"${T2_NoSmurfs}\";" >> $ADMINPREFS_FILE
+printf "\n" >> $ADMINPREFS_FILE
+
+# -- set Evo Centerprint Banner
+echo "\$Host::EvoMOTD = \"${T2_JoinBanner}\";" >> $ADMINPREFS_FILE
+printf "\n" >> $ADMINPREFS_FILE
+echo "\$Host::EvoMOTDlines = \"${T2_JoinBannerLines}\";" >> $ADMINPREFS_FILE
+printf "\n" >> $ADMINPREFS_FILE
+echo "\$Host::EvoMOTDtime = \"${T2_JoinBannerTime}\";" >> $ADMINPREFS_FILE
+printf "\n" >> $ADMINPREFS_FILE
+
+# -- set Loading Screen Options
+echo "\$Host::LoadScreenColor1 = \"${T2_LoadScreenColor1}\";" >> $ADMINPREFS_FILE
+printf "\n" >> $ADMINPREFS_FILE
+echo "\$Host::LoadScreenColor2 = \"${T2_LoadScreenColor2}\";" >> $ADMINPREFS_FILE
+printf "\n" >> $ADMINPREFS_FILE
+echo "\$Host::LoadScreenColor3 = \"${T2_LoadScreenColor3}\";" >> $ADMINPREFS_FILE
+printf "\n" >> $ADMINPREFS_FILE
+
+echo "\$Host::LoadScreenLine1 = \"${T2_LoadScreenLine1}\";" >> $ADMINPREFS_FILE
+printf "\n" >> $ADMINPREFS_FILE
+echo "\$Host::LoadScreenLine1_Msg = \"${T2_LoadScreenLine1_Msg}\";" >> $ADMINPREFS_FILE
+printf "\n" >> $ADMINPREFS_FILE
+echo "\$Host::LoadScreenLine2 = \"${T2_LoadScreenLine2}\";" >> $ADMINPREFS_FILE
+printf "\n" >> $ADMINPREFS_FILE
+echo "\$Host::LoadScreenLine2_Msg = \"${T2_LoadScreenLine2_Msg}\";" >> $ADMINPREFS_FILE
+printf "\n" >> $ADMINPREFS_FILE
+echo "\$Host::LoadScreenLine3 = \"${T2_LoadScreenLine3}\";" >> $ADMINPREFS_FILE
+printf "\n" >> $ADMINPREFS_FILE
+echo "\$Host::LoadScreenLine3_Msg = \"${T2_LoadScreenLine3_Msg}\";" >> $ADMINPREFS_FILE
+printf "\n" >> $ADMINPREFS_FILE
+echo "\$Host::LoadScreenLine4 = \"${T2_LoadScreenLine4}\";" >> $ADMINPREFS_FILE
+printf "\n" >> $ADMINPREFS_FILE
+echo "\$Host::LoadScreenLine4_Msg = \"${T2_LoadScreenLine4_Msg}\";" >> $ADMINPREFS_FILE
+printf "\n" >> $ADMINPREFS_FILE
+echo "\$Host::LoadScreenLine5 = \"${T2_LoadScreenLine5}\";" >> $ADMINPREFS_FILE
+printf "\n" >> $ADMINPREFS_FILE
+echo "\$Host::LoadScreenLine5_Msg = \"${T2_LoadScreenLine5_Msg}\";" >> $ADMINPREFS_FILE
+printf "\n" >> $ADMINPREFS_FILE
+echo "\$Host::LoadScreenLine6 = \"${T2_LoadScreenLine6}\";" >> $ADMINPREFS_FILE
+printf "\n" >> $ADMINPREFS_FILE
+echo "\$Host::LoadScreenLine6_Msg = \"${T2_LoadScreenLine6_Msg}\";" >> $ADMINPREFS_FILE
+printf "\n" >> $ADMINPREFS_FILE
+
 echo "\$Host::LoadScreenMOTD1 = \"${T2_LoadScreenMOTD1}\";" >> $ADMINPREFS_FILE
 printf "\n" >> $ADMINPREFS_FILE
 echo "\$Host::LoadScreenMOTD2 = \"${T2_LoadScreenMOTD2}\";" >> $ADMINPREFS_FILE
 printf "\n" >> $ADMINPREFS_FILE
 echo "\$Host::LoadScreenMOTD3 = \"${T2_LoadScreenMOTD3}\";" >> $ADMINPREFS_FILE
+printf "\n" >> $ADMINPREFS_FILE
+echo "\$Host::LoadScreenMOTD4 = \"${T2_LoadScreenMOTD4}\";" >> $ADMINPREFS_FILE
 printf "\n" >> $ADMINPREFS_FILE
