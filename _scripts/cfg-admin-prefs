@@ -47,12 +47,10 @@ printf "\n" >> $ADMINPREFS_FILE
 echo "\$Host::MaxPlayers = \"${T2_MAX_PLAYERS}\";" >> $ADMINPREFS_FILE
 printf "\n" >> $ADMINPREFS_FILE
 
-# -- set auto pw
-echo "\$Host::PUGautoPassword = ${T2_PUGAUTOPW_ENABLED};" >> $ADMINPREFS_FILE
-printf "\n" >> $ADMINPREFS_FILE
-
 # -- set telnet on/off
 echo "\$Host::ClassicTelnet = ${T2_Telnet};" >> $ADMINPREFS_FILE
+printf "\n" >> $ADMINPREFS_FILE
+echo "\$Host::ClassicTelnetPort = ${T2_Telnet_Port};" >> $ADMINPREFS_FILE
 printf "\n" >> $ADMINPREFS_FILE
 
 # -- set baserape

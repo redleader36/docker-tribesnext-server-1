@@ -15,7 +15,8 @@ services:
       T2_PUG_PASSWORD: "pickup"
       T2_PUGAUTOPW_TOURNY: 1
       T2_TimeLimit: 45
-      T2_Telnet: 1
+      T2_Telnet: 0
+      T2_Telnet_Port: 55555
       T2_BaseRapeMin: 14
       T2_TurretMin: 10
       T2_CloakMin: 6
@@ -61,9 +62,9 @@ services:
         published: 28000
         protocol: udp
         mode: host
-      - target: 666
+      - target: 55555
         protocol: tcp
-        published: 27999
+        published: 666
         mode: host
                    
     networks:
