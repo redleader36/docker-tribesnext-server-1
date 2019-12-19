@@ -53,6 +53,14 @@ printf "\n" >> $ADMINPREFS_FILE
 echo "\$Host::ClassicTelnetPort = ${T2_Telnet_Port};" >> $ADMINPREFS_FILE
 printf "\n" >> $ADMINPREFS_FILE
 
+# -- set admin voting options
+echo "\$Host::allowAdminPlayerVotes = ${T2_VoteAdmin};" >> $ADMINPREFS_FILE
+printf "\n" >> $ADMINPREFS_FILE
+echo "\$Host::EvoAdminMinPlayers = ${T2_VoteAdminPlayerMin};" >> $ADMINPREFS_FILE
+printf "\n" >> $ADMINPREFS_FILE
+echo "\$Host::EvoAdminAdmin = ${T2_Admin2AdminOthers};" >> $ADMINPREFS_FILE
+printf "\n" >> $ADMINPREFS_FILE
+
 # -- set baserape
 echo "\$Host::EvoNoBaseRapeClassicPlayerCount = ${T2_BaseRapeMin};" >> $ADMINPREFS_FILE
 printf "\n" >> $ADMINPREFS_FILE

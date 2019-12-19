@@ -29,6 +29,9 @@ services:
       T2_NoSmurfs: 0
       T2_ADMIN_LIST: ""
       T2_SA_LIST: ""
+      T2_VoteAdmin: 1
+      T2_VoteAdminPlayerMin: 8
+      T2_Admin2AdminOthers: 1
       T2_JoinBanner: "<color:3cb4b4><font:Sui Generis:22>Welcome\\n<color:3cb4b4><font:Univers:16>Get Mappacks at https://playt2.tk"
       T2_JoinBannerLines: 3
       T2_JoinBannerTime: 6
