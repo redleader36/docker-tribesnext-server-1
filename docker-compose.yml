@@ -69,7 +69,11 @@ services:
         protocol: tcp
         published: 666
         mode: host
-                   
+
+    volumes:
+      - serverStats:/home/gameserv/.loki/Classic/serverStats
+      - stats:/home/gameserv/.loki/Classic/stats
+
     networks:
       - t2-net
 
@@ -91,6 +95,10 @@ services:
       options:
         max-size: "10m"
 
+volumes:
+  serverStats:
+  stats:
+  
 networks:
   t2-net:
     driver: overlay
