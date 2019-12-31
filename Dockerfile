@@ -14,26 +14,19 @@ WORKDIR /tmp
 RUN git clone --depth 1 "https://github.com/ChocoTaco1/TacoMaps/"  && cd ./TacoMaps
 WORKDIR /tmp
 
-
 RUN git clone --depth 1 "https://github.com/ChocoTaco1/NoTNscripts/"  && cd ./NoTNscripts
 
 
 # Main Game Server Image
-FROM ubuntu:18.04
+FROM i386/ubuntu:disco
 LABEL maintainer="sairuk, amineo, chocotaco"
 
 # ENVIRONMENT
 ARG SRVUSER=gameserv
 ARG SRVUID=1000
 ARG SRVDIR=/tmp/tribes2/
-ENV INSTDIR=/home/${SRVUSER}/.wine32/drive_c/Dynamix/Tribes2/
+ENV INSTDIR=/home/${SRVUSER}/.loki/tribes2/
 
-# WINE VERSION: wine = 1.6, wine-development = 1.7.29 for i386-jessie
-ENV WINEVER=wine-development
-ENV WINEARCH=win32
-ENV WINEPREFIX=/home/${SRVUSER}/.wine32/
-
-#WINEARCH=win32 WINEPREFIX=/home/gameserv/.wine32/ wine wineboot
 
 # UPDATE IMAGE
 RUN dpkg --add-architecture i386
@@ -46,17 +39,7 @@ sudo unzip \
 # -- logging
 rsyslog \
 # -- utilities
-sed less nano vim file wget gnupg2 software-properties-common netcat \
-# --- wine
-#${WINEVER} \
-# -- display
-xvfb
-
-RUN wget --no-check-certificate https://dl.winehq.org/wine-builds/winehq.key
-RUN apt-key add winehq.key
-RUN add-apt-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ bionic main'
-RUN add-apt-repository ppa:cybermax-dexter/sdl2-backport
-RUN apt-get -y update && apt-get -y upgrade && apt-get -y install --install-recommends winehq-devel
+sed less nano vim file wget curl gnupg2 netcat software-properties-common xdelta3
 
 
 # CLEAN IMAGE
@@ -72,8 +55,7 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN useradd -m -s /bin/bash -u ${SRVUID} ${SRVUSER}
 # -- temporarily steal ownership
 RUN chown -R root: /home/${SRVUSER}
-# -- set wine win32 env
-RUN WINEARCH=win32 WINEPREFIX=/home/gameserv/.wine32/ wine wineboot
+
 
 # SCRIPT - installer
 COPY _scripts/tribesnext-server-installer ${SRVDIR}
@@ -86,9 +68,9 @@ COPY _scripts/start-server ${INSTDIR}/start-server
 RUN chmod +x ${INSTDIR}/start-server
 
 # TacoServer - Pull in resources from builder
-COPY --from=tacobuilder /tmp/TacoServer/Classic/. ${INSTDIR}GameData/Classic/.
-COPY --from=tacobuilder /tmp/TacoMaps/. ${INSTDIR}GameData/Classic/Maps/
-COPY --from=tacobuilder /tmp/NoTNscripts/. ${INSTDIR}GameData/Classic/scripts/autoexec/.
+COPY --from=tacobuilder /tmp/TacoServer/Classic/. ${INSTDIR}/Classic/.
+COPY --from=tacobuilder /tmp/TacoMaps/. ${INSTDIR}/Classic/Maps/
+COPY --from=tacobuilder /tmp/NoTNscripts/. ${INSTDIR}/Classic/scripts/autoexec/.
 
 
 # CLEAN UP
@@ -98,12 +80,20 @@ RUN ${SRVDIR}/clean-up ${INSTDIR}
 
 
 # SCRIPT - custom (custom content / overrides)
-COPY _custom/. ${INSTDIR}
+COPY _custom/GameData/. ${INSTDIR}
 
 
 # SCRIPT - expand admin prefs
 COPY _scripts/cfg-admin-prefs ${SRVDIR}
 RUN chmod +x ${SRVDIR}/cfg-admin-prefs
+
+# SCRIPT - generate our alphabetized autoexec index
+COPY _scripts/gen_autoexec_index ${SRVDIR}
+RUN chmod +x ${SRVDIR}/gen_autoexec_index
+
+# SCRIPT - heartbeat to TribesNext's master server
+COPY _scripts/tn_heartbeat ${SRVDIR}
+RUN chmod +x ${SRVDIR}/tn_heartbeat
 
 
 # PERMISSIONS
