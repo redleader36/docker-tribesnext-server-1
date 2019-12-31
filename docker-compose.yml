@@ -71,8 +71,8 @@ services:
         mode: host
 
     volumes:
-      - serverStats:/home/gameserv/.loki/Classic/serverStats
-      - stats:/home/gameserv/.loki/Classic/stats
+      - serverStats:/home/gameserv/.loki/tribes2/Classic/serverStats
+      - stats:/home/gameserv/.loki/tribes2/Classic/stats
 
     networks:
       - t2-net
