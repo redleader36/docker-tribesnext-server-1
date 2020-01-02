@@ -4,16 +4,16 @@
 SCRIPTS_DIR=$1
 INDEX_FILE="$SCRIPTS_DIR"/autoexec/AAutoExecIndex.cs
 
-mkdir -p "$SCRIPTS_DIR"/autoexec/library
-mv -v "$SCRIPTS_DIR"/autoexec/*.cs "$SCRIPTS_DIR"/autoexec/library/.
+mkdir -p "$SCRIPTS_DIR"/library
+mv -v "$SCRIPTS_DIR"/autoexec/*.cs "$SCRIPTS_DIR"/library
 
 scripts=(
-   "$SCRIPTS_DIR"/autoexec/library/*.cs
+   "$SCRIPTS_DIR"/library/*.cs
 )
 
 for i in "${scripts[@]##*/}"
 do
-    echo "library/${i}" >> $INDEX_FILE
+    echo "exec(\"scripts/library/${i}\");" >> $INDEX_FILE
 done
 
 cat $INDEX_FILE
