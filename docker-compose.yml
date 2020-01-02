@@ -73,6 +73,7 @@ services:
     volumes:
       - serverStats:/home/gameserv/.loki/tribes2/Classic/serverStats
       - stats:/home/gameserv/.loki/tribes2/Classic/stats
+      - logs:/home/gameserv/.loki/tribes2/Classic/logs
 
     networks:
       - t2-net
@@ -98,6 +99,7 @@ services:
 volumes:
   serverStats:
   stats:
+  logs:
   
 networks:
   t2-net:
