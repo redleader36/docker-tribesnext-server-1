@@ -9,10 +9,10 @@ echo "Done!"
 
 echo "Removing TacoServer TribesNext Incompatibilities"
 # Remove zAdvancedStatsLogless.vl2: causes issues connecting without TN
-rm $1/Classic/zAdvancedStatsLogless.vl2
+[ -f $1Classic/zAdvancedStatsLogless.vl2 ] && rm $1Classic/zAdvancedStatsLogless.vl2
 # Remove checkVer: Wont work anyway without TN
-rm $1/Classic/scripts/autoexec/zCheckVer.cs
+[ -f $1Classic/scripts/autoexec/zCheckVer.cs ] && rm $1Classic/scripts/autoexec/zCheckVer.cs
 # We're using our own heartbeat to TN
-rm $1/Classic/scripts/autoexec/zAltAltHeartbeatDaemon.cs
+[ -f $1Classic/scripts/autoexec/zAltAltHeartbeatDaemon.cs ] && rm $1Classic/scripts/autoexec/zAltAltHeartbeatDaemon.cs
 
 echo "Done!"
