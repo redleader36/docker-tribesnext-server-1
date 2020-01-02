@@ -7,10 +7,9 @@ RUN apk --update add git sed less wget nano openssh && \
     rm /var/cache/apk/*
 
 WORKDIR /tmp
-
-RUN git clone --depth 1 "https://github.com/ChocoTaco1/TacoServer/"
-RUN git clone --depth 1 "https://github.com/ChocoTaco1/TacoMaps/"
-RUN git clone --depth 1 "https://github.com/ChocoTaco1/NoTNscripts/"
+RUN git clone --depth 1 "https://github.com/ChocoTaco1/TacoServer/" && rm -rf ./TacoServer/.git
+RUN git clone --depth 1 "https://github.com/ChocoTaco1/TacoMaps/" && rm -rf ./TacoMaps/.git
+RUN git clone --depth 1 "https://github.com/ChocoTaco1/NoTNscripts/" && rm -rf ./NoTNscripts/.git
 
 # --- end tacobuilder
 
