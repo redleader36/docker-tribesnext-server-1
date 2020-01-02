@@ -8,14 +8,11 @@ RUN apk --update add git sed less wget nano openssh && \
 
 WORKDIR /tmp
 
-RUN git clone --depth 1 "https://github.com/ChocoTaco1/TacoServer/" && cd ./TacoServer 
-WORKDIR /tmp
+RUN git clone --depth 1 "https://github.com/ChocoTaco1/TacoServer/"
+RUN git clone --depth 1 "https://github.com/ChocoTaco1/TacoMaps/"
+RUN git clone --depth 1 "https://github.com/ChocoTaco1/NoTNscripts/"
 
-RUN git clone --depth 1 "https://github.com/ChocoTaco1/TacoMaps/"  && cd ./TacoMaps
-WORKDIR /tmp
-
-RUN git clone --depth 1 "https://github.com/ChocoTaco1/NoTNscripts/"  && cd ./NoTNscripts
-
+# --- end tacobuilder
 
 # Main Game Server Image
 FROM i386/ubuntu:disco
@@ -70,7 +67,7 @@ RUN chmod +x ${INSTDIR}/start-server
 # TacoServer - Pull in resources from builder
 COPY --from=tacobuilder /tmp/TacoServer/Classic/. ${INSTDIR}/Classic/.
 COPY --from=tacobuilder /tmp/TacoMaps/. ${INSTDIR}/Classic/Maps/
-COPY --from=tacobuilder /tmp/NoTNscripts/. ${INSTDIR}/Classic/scripts/autoexec/.
+COPY --from=tacobuilder /tmp/NoTNscripts/. ${INSTDIR}/Classic/.
 
 
 # CLEAN UP
