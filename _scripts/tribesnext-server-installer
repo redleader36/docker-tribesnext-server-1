@@ -24,6 +24,7 @@ then
     mkdir -p $INSBASE/tribes2/base/{music,lighting,textures,prefs}
     mkdir -p $INSBASE/tribes2/Classic/scripts/{turrets,weapons,autoexec,packs,vehicles}
     mkdir -p $INSBASE/tribes2/Classic/scripts/tacoscripts
+    mkdir -p $INSBASE/tribes2/Classic/{logs,stats,serverStats}
 fi
 
 
@@ -73,6 +74,11 @@ then
     cd $INSBASE/tribes2/
     xdelta3 decode -s tribes2d.dynamic tribes2-lan-fix-linux.xdelta tribes2d-lan.dynamic
     chmod 755 tribes2d-lan.dynamic
+
+    echo "Binding console.log to container logs"
+    touch console.log
+    ln -sf /proc/1/fd/1 console.log
+
     echo "Finished setting up T2!"
 fi
 
