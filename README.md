@@ -1,16 +1,49 @@
-# Docker TribesNext
+# Containerized Tribes 2 Linux Dedicated Game Server
+
+## Inspiration
+TribesNext is an amazing project. If it weren’t for Tythe I'm not sure where this community would be. Thank you!  
+
+- Running a TribesNext patched Tribes 2 Linux Game Server under Wine chugs on its calls to the Ruby library, mainly during its sha1 calcs. It's not that noticeable in windows, but in Linux this causes the infamous player join stutter that pauses the whole server for about a second. As you can imagine, in Tribes this is an eternity and extremely disruptive.
+- Reproducable architecture
+- Linux servers are cheaper and running a game server in docker swarm is hilarious ;)
+- Science! 
+
+---
+
+## Read This!
+First thing you should know:  
+**This does not use TribesNext's auth system because TribesNext does not support Linux. It does however use the master server.**
+
+What does this mean?  
+**The server will show up normally in the joinable list but because it does not verify the player against TribesNext's auth, this could allow smurfs.**
+
+---
+
+## Prerequisites
+ - Ubuntu *(Will likely work on other distros but this is what I've tested on)*
+ - [Docker installed](HOW_TO_INSTALL_DOCKER.md)
+ - [Docker Swarm](HOW_TO_INSTALL_DOCKER.md)
+ - PORTS 28000/UDP, 666/TCP open on your firewall.
+
+**[If you need to install Docker and Docker Swarm. Read this.](HOW_TO_INSTALL_DOCKER.md)**
+
+---
+
+## About the Dockerfile
 
 
-## Fork Updates
 
-- [Classic v1.5.2](http://tribes2stats.com/files/mods/classic_v152.zip)
-- [Ruby 1.9](https://ftp.ruby-lang.org/pub/ruby/binaries/mswin32/unstable/ruby-1.9.0-2-i386-mswin32.zip)
+## Setup
+
+- Add swarm secrets
+- Build and push the image
+- Deploy stack
+
 
 
 ---
 
-## Information
-TribesNext dedicated server patched and running within Docker under wine.
+## Credits
 
 *This is TribesNext RC2a with the wine patches included.*
 
