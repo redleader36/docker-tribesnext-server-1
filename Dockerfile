@@ -22,7 +22,9 @@ ARG SRVUSER=gameserv
 ARG SRVUID=1000
 ARG SRVDIR=/tmp/tribes2/
 ENV INSTDIR=/home/${SRVUSER}/.loki/tribes2/
-
+ENV TZ="America/New_York"
+# -- shutup installers
+ENV DEBIAN_FRONTEND noninteractive
 
 # UPDATE IMAGE
 RUN dpkg --add-architecture i386
@@ -35,16 +37,12 @@ sudo unzip \
 # -- logging
 rsyslog \
 # -- utilities
-sed less nano vim file wget curl gnupg2 netcat software-properties-common xdelta3
+sed less nano vim file wget curl gnupg2 netcat software-properties-common xdelta3 tzdata
 
+#RUN timedatectl set-timezone ${TZ}
 
 # CLEAN IMAGE
 RUN apt-get -y clean && apt-get -y autoremove
-
-
-# ENV
-# -- shutup installers
-ENV DEBIAN_FRONTEND noninteractive
 
 # USER
 # -- add the user, expose datastore

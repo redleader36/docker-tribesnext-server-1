@@ -7,6 +7,7 @@ services:
       context: .
       dockerfile: ./Dockerfile
     environment:
+      TZ: "America/New_York"
       T2_SERVERNAME: "Testing Grounds"
       T2_MAX_PLAYERS: 64
       T2_DEFAULT_MISSIONTYPE: "CTF"
