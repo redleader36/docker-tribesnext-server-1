@@ -75,9 +75,10 @@ then
     xdelta3 decode -s tribes2d.dynamic tribes2-lan-fix-linux.xdelta tribes2d-lan.dynamic
     chmod 755 tribes2d-lan.dynamic
 
-    echo "Binding console.log to container logs"
+    echo "Binding console.log to console.log in logs volume"
     touch $INSBASE/tribes2/console.log
-    ln -sf /proc/1/fd/1 $INSBASE/tribes2/console.log
+    [ -f $INSBASE/tribes2/Classic/logs/console.log ] && touch $INSBASE/tribes2/Classic/logs/console.log
+    ln -sf $INSBASE/tribes2/Classic/logs/console.log $INSBASE/tribes2/console.log
 
     echo "Finished setting up T2!"
 fi
