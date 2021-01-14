@@ -14,7 +14,7 @@ RUN git clone --depth 1 "https://github.com/ChocoTaco1/NoTNscripts/" && rm -rf .
 # --- end tacobuilder
 
 # Main Game Server Image
-FROM i386/ubuntu:beaver
+FROM i386/ubuntu:bionic
 LABEL maintainer="sairuk, amineo, chocotaco"
 
 # ENVIRONMENT
